@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace VideoGamesApi.Data
 {
-    interface IBaseRepository<T>
+    public interface IBaseRepository<T>
     {
         IEnumerable<T> Get();
         T Get(int id);

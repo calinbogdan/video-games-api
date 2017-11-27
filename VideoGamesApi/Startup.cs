@@ -46,9 +46,7 @@ namespace VideoGamesApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc(options => options.MapRoute(
-                name: "DefaultApi",
-                template: "api/{controller}/{id?}"));
+            app.UseMvc();
         }
     }
 }
