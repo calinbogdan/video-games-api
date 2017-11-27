@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using VideoGamesApi.Data;
 using Microsoft.EntityFrameworkCore;
+using VideoGamesApi.Models;
 
 namespace VideoGamesApi
 {
@@ -29,7 +30,10 @@ namespace VideoGamesApi
 
             services.AddDbContext<VideoGamesContext>(options =>
                             options.UseSqlServer(Configuration.GetConnectionString("VideoGamesContext")));
-            
+
+            services.AddScoped<IBaseRepository<VideoGame>, VideoGamesRepository>();
+            services.AddScoped<IBaseRepository<Platform>, PlatformsRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
