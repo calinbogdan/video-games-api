@@ -24,6 +24,8 @@ namespace VideoGamesApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.UseSqlServer<Context>("")
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
