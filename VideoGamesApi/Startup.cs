@@ -33,6 +33,7 @@ namespace VideoGamesApi
 
             services.AddScoped<IBaseRepository<VideoGame>, VideoGamesRepository>();
             services.AddScoped<IBaseRepository<Platform>, PlatformsRepository>();
+            services.AddScoped<IBaseRepository<Developer>, DevelopersRepository>();
 
         }
 
