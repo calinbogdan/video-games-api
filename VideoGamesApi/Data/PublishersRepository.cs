@@ -6,16 +6,16 @@ using VideoGamesApi.Models;
 
 namespace VideoGamesApi.Data
 {
-    public class PlatformsRepository : IBaseRepository<Platform>
+    public class PublishersRepository : IBaseRepository<Publisher>
     {
         private readonly VideoGamesContext _videoGamesContext;
 
-        public PlatformsRepository(VideoGamesContext videoGamesContext)
+        public PublishersRepository(VideoGamesContext videoGamesContext)
         {
             _videoGamesContext = videoGamesContext;
         }
-        
-        public void Add(Platform item)
+
+        public void Add(Publisher item)
         {
             _videoGamesContext.Add(item);
             _videoGamesContext.SaveChanges();
@@ -23,26 +23,26 @@ namespace VideoGamesApi.Data
 
         public void Delete(int id)
         {
-            var platform = Get(id);
+            var publisher = Get(id);
 
-            if (platform == null)
-                throw new Exception();
+            if (publisher == null)
+                throw new Exception(); // PublisherNotFoundException
 
-            _videoGamesContext.Remove(platform);
+            _videoGamesContext.Remove(publisher);
             _videoGamesContext.SaveChanges();
         }
-        
-        public IEnumerable<Platform> Get()
+
+        public IEnumerable<Publisher> Get()
         {
-            return _videoGamesContext.Platforms.ToList();
+            return _videoGamesContext.Publishers.ToList();
         }
 
-        public Platform Get(int id)
+        public Publisher Get(int id)
         {
-            return _videoGamesContext.Platforms.Where(p => p.Id == id).SingleOrDefault();
+            return _videoGamesContext.Publishers.Where(p => p.Id == id).SingleOrDefault();
         }
-        
-        public void Update(Platform item)
+
+        public void Update(Publisher item)
         {
             _videoGamesContext.Update(item);
             _videoGamesContext.SaveChanges();

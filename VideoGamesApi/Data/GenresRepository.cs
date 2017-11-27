@@ -6,16 +6,16 @@ using VideoGamesApi.Models;
 
 namespace VideoGamesApi.Data
 {
-    public class PlatformsRepository : IBaseRepository<Platform>
+    public class GenresRepository : IBaseRepository<Genre>
     {
         private readonly VideoGamesContext _videoGamesContext;
-
-        public PlatformsRepository(VideoGamesContext videoGamesContext)
+        
+        public GenresRepository(VideoGamesContext videoGamesContext)
         {
             _videoGamesContext = videoGamesContext;
         }
-        
-        public void Add(Platform item)
+
+        public void Add(Genre item)
         {
             _videoGamesContext.Add(item);
             _videoGamesContext.SaveChanges();
@@ -23,26 +23,26 @@ namespace VideoGamesApi.Data
 
         public void Delete(int id)
         {
-            var platform = Get(id);
+            var genre = Get(id);
 
-            if (platform == null)
-                throw new Exception();
+            if (genre == null)
+                throw new Exception(); // GenreNotFoundException
 
-            _videoGamesContext.Remove(platform);
+            _videoGamesContext.Remove(genre);
             _videoGamesContext.SaveChanges();
         }
-        
-        public IEnumerable<Platform> Get()
+
+        public IEnumerable<Genre> Get()
         {
-            return _videoGamesContext.Platforms.ToList();
+            return _videoGamesContext.Genres.ToList();
         }
 
-        public Platform Get(int id)
+        public Genre Get(int id)
         {
-            return _videoGamesContext.Platforms.Where(p => p.Id == id).SingleOrDefault();
+            return _videoGamesContext.Genres.Where(g => g.Id == id).SingleOrDefault();
         }
-        
-        public void Update(Platform item)
+
+        public void Update(Genre item)
         {
             _videoGamesContext.Update(item);
             _videoGamesContext.SaveChanges();

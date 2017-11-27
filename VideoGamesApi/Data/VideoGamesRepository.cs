@@ -34,9 +34,8 @@ namespace VideoGamesApi.Data
             var videoGame = Get(id);
 
             if (videoGame == null)
-            {
                 throw new Exception();
-            }
+            
 
             _videoGamesContext.Remove(videoGame);
         }
