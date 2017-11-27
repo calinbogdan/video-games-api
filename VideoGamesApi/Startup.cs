@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using VideoGamesApi.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace VideoGamesApi
 {
@@ -25,7 +27,9 @@ namespace VideoGamesApi
         {
             services.AddMvc();
 
-            services.UseSqlServer<Context>("")
+            services.AddDbContext<VideoGamesContext>(options =>
+                            options.UseSqlServer(Configuration.GetConnectionString("VideoGamesContext")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
